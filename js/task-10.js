@@ -10,25 +10,26 @@ const btnDestroyEl = document.querySelector(`button[data-destroy]`);
 const inputEl = document.querySelector(`input`);
 const divEl = document.querySelector(`#controls`)
 
-console.log(btnCreateEl)
-
-// btnCreateEl.addEventListener(`click`, onChangeBoxSize)
-
 inputEl.addEventListener(`input`, onChangeBoxSize);
 
 btnCreateEl.addEventListener(`click`, createBoxes);
 
+btnDestroyEl.addEventListener(`click`, destroyBoxes);
+
+function destroyBoxes() {
+  const newDivEls = document.querySelectorAll(`.cool`)
+  for (const newDivEl of newDivEls) {
+    newDivEl.remove();
+  }
+}
+
 const makeBoxes = ({ width, height }) => {
   return`
-    <div style="width:${width}; height:${height}; background-color:${getRandomHexColor()};"></div>`
+    <div style="width:${width}; height:${height}; background-color:${getRandomHexColor()};" class="cool"></div>`
 }
-// const makeGalaryBoxes = boxes.map(boxe => boxe.width)
 
 function createBoxes() {
   divEl.insertAdjacentHTML(`afterbegin`, boxes.map(makeBoxes).join(''));
-  console.log(divEl)
-  console.log(boxes)
-  console.log(boxes.map(makeBoxes).join(''));
 }
 
 function onChangeBoxSize(event) {
@@ -37,10 +38,8 @@ function onChangeBoxSize(event) {
 }
 
 function onChoiceBoxes(amount) {
-  
   boxes = [];
   let sizeBox = 0;
-  console.log(amount);
   for (let index = 1; index <= amount; index += 1) {
     const numberBoxes = {};
     sizeBox = `${startsizeBox + (index - 1) * 10}px`;
@@ -48,9 +47,7 @@ function onChoiceBoxes(amount) {
     numberBoxes[`width`] = `${sizeBox}`;
     numberBoxes[`height`] = `${sizeBox}`;
     boxes.push(numberBoxes);
-
   }
-  console.log(boxes);
 }
 
 
