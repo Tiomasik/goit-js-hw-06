@@ -20,7 +20,7 @@ btnCreateEl.addEventListener(`click`, createBoxes);
 
 const makeBoxes = ({ width, height }) => {
   return`
-    <div>ve3v4v</div>`
+    <div style="width:${width}; height:${height}; background-color:${getRandomHexColor()};"></div>`
 }
 // const makeGalaryBoxes = boxes.map(boxe => boxe.width)
 
