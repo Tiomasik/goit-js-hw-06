@@ -3,24 +3,55 @@ function getRandomHexColor() {
 }
 
 const startsizeBox = 30;
-const numberBoxes = {};
+let boxes = [];
 
 const btnCreateEl = document.querySelector(`button[data-create]`);
 const btnDestroyEl = document.querySelector(`button[data-destroy]`);
-const inputEl = document.querySelector(`input`)
+const inputEl = document.querySelector(`input`);
+const divEl = document.querySelector(`#controls`)
 
-inputEl.addEventListener(`input`, onChangeBoxSize)
-// btnCreateEl.addEventListener(`click`, createBoxes)
+console.log(btnCreateEl)
+
+// btnCreateEl.addEventListener(`click`, onChangeBoxSize)
+
+inputEl.addEventListener(`input`, onChangeBoxSize);
+
+btnCreateEl.addEventListener(`click`, createBoxes);
+
+const makeBoxes = ({ width, height }) => {
+  return`
+    <div>ve3v4v</div>`
+}
+// const makeGalaryBoxes = boxes.map(boxe => boxe.width)
+
+function createBoxes() {
+  divEl.insertAdjacentHTML(`afterbegin`, boxes.map(makeBoxes).join(''));
+  console.log(divEl)
+  console.log(boxes)
+  console.log(boxes.map(makeBoxes).join(''));
+}
 
 function onChangeBoxSize(event) {
   // console.log(event.currentTarget.valueAsNumber);
-  createBoxes(event.currentTarget.valueAsNumber)
+  onChoiceBoxes(event.currentTarget.valueAsNumber)
 }
 
-function createBoxes(amount) {
-  // console.log(amount);
-  const sizeBox = `${startsizeBox + (amount - 1) * 10}px`;
+function onChoiceBoxes(amount) {
   
-  console.log(sizeBox);
+  boxes = [];
+  let sizeBox = 0;
+  console.log(amount);
+  for (let index = 1; index <= amount; index += 1) {
+    const numberBoxes = {};
+    sizeBox = `${startsizeBox + (index - 1) * 10}px`;
+    
+    numberBoxes[`width`] = `${sizeBox}`;
+    numberBoxes[`height`] = `${sizeBox}`;
+    boxes.push(numberBoxes);
+
+  }
+  console.log(boxes);
 }
+
+
 
